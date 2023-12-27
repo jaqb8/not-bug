@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %} 
+<div class="d-flex flex-column gap-5">
+  {% if user.is_authenticated %}
+  <div class="d-flex flex-column gap-2">
+    <h2>Create Post</h2>
+    <form method="POST" action={% url 'create-post' %}>
+      {% csrf_token %} {{ create_post_form.as_p }}
+      <div class="form-group">
+        <input type="submit" value="Post" class="btn btn-success" />
+      </div>
+    </form>
+  </div>
+  {% else %}
+  <div class="alert alert-light" role="alert">Register <a href="/register">here</a> to create your first post.
+    If you already have an account, please <a href="/login">login</a>.
+    </div>
+  {% endif %}
+  <div class="d-flex flex-column gap-2">
+    <h2>Posts</h2>
+    {% if posts.count == 0 %}
+    <div>No posts yet.</div>
+    {% else %}
+    <div class="d-flex flex-column gap-4">
+      {% for post in posts %}
+      <div class="border-bottom">
+        <h4><a href="/post/{{post.id}}">{{ post.title }}</a></h4>
+        <span>by <strong>{{post.author}}</strong> | <em>{{ post.formatted_date }}</em></span>
+        <p class="text-truncate">{{ post.content }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

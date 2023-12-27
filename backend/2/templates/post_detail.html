@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<div class="d-flex flex-column">
+  <h4><a href="/post/{{post.id}}">{{ post.title }}</a></h4>
+  <span
+    >by <strong>{{post.author}}</strong> |
+    <em>{{ post.formatted_date }}</em></span
+  >
+  {% if can_edit %}
+  <div>
+    <a href="/post/{{post.id}}/edit" class="btn btn-warning btn-sm px-3 my-2"
+      >Edit</a
+    >
+  </div>
+  {% endif %}
+  <p class="text-break pt-3">{{ post.content }}</p>
+</div>
+{%endblock%}

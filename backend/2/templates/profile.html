@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+<div class="d-flex flex-column">
+  <h1>Profile</h1>
+  <h4><i class="bi bi-person-circle"></i> {{user}}</h4>
+  {% for post in posts %}
+  <div class="border-bottom pt-4 d-flex flex-column gap-1">
+    <h4><a href="/post/{{post.id}}">{{ post.title }}</a></h4>
+    <span
+      >by <strong>{{post.author}}</strong> |
+      <em>{{ post.formatted_date }}</em></span
+    >
+    <div>
+      <a href="/post/{{post.id}}/edit" class="btn btn-warning btn-sm px-3"
+        >Edit</a
+      >
+    </div>
+    <p class="text-truncate">{{ post.content }}</p>
+  </div>
+  {% endfor %} {% if posts.count == 0 %}
+  <div class="alert alert-light mt-3" role="alert">No posts yet.</div>
+  {% endif %}
+</div>
+{%endblock%}

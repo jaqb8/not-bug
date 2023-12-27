@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<div class="d-flex flex-column gap-3">
+<div>
+  <h3>Edit post</h3>
+  <span
+  >by <strong>{{post.author}}</strong> |
+  <em>{{ post.formatted_date }}</em></span
+>
+</div>
+  <form method="POST" action={% url 'post-edit' post.id %}>
+    {% csrf_token %} {{ edit_post_form.as_p }}
+    <div class="form-group">
+      <input type="submit" value="Submit" class="btn btn-success" />
+    </div>
+  </form>
+</div>
+{%endblock%}
