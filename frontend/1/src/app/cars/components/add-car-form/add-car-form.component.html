@@ -1,0 +1,42 @@
+<form
+  [formGroup]="addCarForm"
+  (ngSubmit)="onSubmit()"
+  class="flex flex-col gap-2"
+>
+  <label class="form-control">
+    <div class="label">
+      <span class="label-text">Brand</span>
+    </div>
+    <input
+      id="brand"
+      type="text"
+      class="input input-bordered w-96"
+      formControlName="brand"
+    />
+  </label>
+  <label class="form-control">
+    <div class="label">
+      <span class="label-text">Model</span>
+    </div>
+    <input
+      type="text"
+      id="model"
+      class="input input-bordered w-96"
+      formControlName="model"
+    />
+  </label>
+  <label class="form-control">
+    <div class="label">
+      <span class="label-text">Year</span>
+    </div>
+    <input
+      id="year"
+      type="number"
+      class="input input-bordered w-96"
+      formControlName="year"
+    />
+  </label>
+  <button class="btn btn-outline w-96" [disabled]="!addCarForm.valid">
+    Submit
+  </button>
+</form>
